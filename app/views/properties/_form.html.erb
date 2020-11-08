@@ -1,11 +1,11 @@
 <%= form_with(model: property, local: true) do |form| %>
   <% if property.errors.any? %>
-    <div id="error_explanation" class="text-white bg-red-200 border border-red-600">
-      <h2><%= pluralize(property.errors.count, "error") %> prohibited this property from being saved:</h2>
+    <div id="error_explanation" class="mt-4 mb-4 text-sm text-red-500 bg-red-200 border border-red-600 rounded-sm">
+      <h2 class="pl-2"><%= pluralize(property.errors.count, "error") %> prohibited this property from being saved:</h2>
 
       <ul>
         <% property.errors.full_messages.each do |message| %>
-          <li><%= message %></li>
+          <li class="pl-8"><%= message %></li>
         <% end %>
       </ul>
     </div>
@@ -24,6 +24,11 @@
   <div class="field">
     <%= form.label :surface %>
     <%= form.number_field :surface %>
+  </div>
+
+  <div class="select">
+    <%= form.label :condo_id %>
+    <%= form.select(:condo_id, Condo.all.collect { |u| [u.name, u.id] }, { prompt: "Choose a codo" }) %>
   </div>
 
   <div class="actions">

@@ -1,0 +1,13 @@
+<% content_for :primary_content do %>
+
+
+  <h1>Editing Condo</h1>
+
+  <%= render 'form', condo: @condo %>
+
+  <%= link_to 'Show', @condo %> |
+  <%= link_to 'Back', condos_path %>
+
+<% end %>
+
+<%= render "basic_layout" %>

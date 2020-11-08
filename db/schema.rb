@@ -10,7 +10,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_11_07_161032) do
+ActiveRecord::Schema.define(version: 2020_11_08_103136) do
+
+  create_table "condos", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.integer "property_id"
+    t.integer "user_id"
+    t.index ["name"], name: "index_condos_on_name", unique: true
+    t.index ["property_id"], name: "index_condos_on_property_id"
+    t.index ["user_id"], name: "index_condos_on_user_id"
+  end
 
   create_table "properties", force: :cascade do |t|
     t.string "address"
@@ -18,6 +29,10 @@ ActiveRecord::Schema.define(version: 2020_11_07_161032) do
     t.integer "surface"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.integer "condo_id"
+    t.integer "user_id"
+    t.index ["condo_id"], name: "index_properties_on_condo_id"
+    t.index ["user_id"], name: "index_properties_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -32,4 +47,8 @@ ActiveRecord::Schema.define(version: 2020_11_07_161032) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "condos", "properties"
+  add_foreign_key "condos", "users"
+  add_foreign_key "properties", "condos"
+  add_foreign_key "properties", "users"
 end

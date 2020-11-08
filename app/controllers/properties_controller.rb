@@ -10,11 +10,12 @@ class PropertiesController < ApplicationController
   # GET /properties/1
   # GET /properties/1.json
   def show
+    @condo = @property.condo
   end
 
   # GET /properties/new
   def new
-    @property = Property.new
+    @property = current_user.properties.build
   end
 
   # GET /properties/1/edit
@@ -24,7 +25,8 @@ class PropertiesController < ApplicationController
   # POST /properties
   # POST /properties.json
   def create
-    @property = Property.new(property_params)
+    @property = current_user.properties.build(property_params)
+    @property.user_id = current_user.id
 
     respond_to do |format|
       if @property.save
@@ -69,6 +71,6 @@ class PropertiesController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def property_params
-      params.require(:property).permit(:address, :floor, :surface)
+      params.require(:property).permit(:address, :floor, :surface, :user_id, :condo_id)
     end
 end
