@@ -1,0 +1,15 @@
+<% content_for :primary_content do %>
+
+  <h1>New Property</h1>
+
+  <%= render 'form', property: @property %>
+
+  <%= link_to 'Back', properties_path %>
+
+<% end %>
+
+<% content_for :secondary_content do %>
+  <h1 class="text-lg text-gray-600">Create your new property !</h1>
+<% end %>
+
+<%= render "basic_layout" %>

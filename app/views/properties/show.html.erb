@@ -1,0 +1,28 @@
+<% content_for :primary_content do %>
+
+  <p>
+    <strong>Address:</strong>
+    <%= @property.address %>
+  </p>
+
+  <p>
+    <strong>Floor:</strong>
+    <%= @property.floor %>
+  </p>
+
+  <p>
+    <strong>Surface:</strong>
+    <%= @property.surface %> m2
+  </p>
+
+  <%= link_to 'Edit', edit_property_path(@property) %> |
+  <%= link_to 'Back', properties_path %>
+
+<% end %>
+
+<% content_for :secondary_content do %>
+  <h1 class="text-lg text-gray-600">Your property !</h1>
+<% end %>
+
+
+<%= render "basic_layout" %>

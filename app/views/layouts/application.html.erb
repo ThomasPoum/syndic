@@ -5,11 +5,34 @@
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
+      
+
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
-  <body>
+  <body class= "relative bg-gray-200">
+
+    <% unless notice.nil? %>
+      <p class="flex items-center justify-center h-10 pl-4 font-sans text-sm text-white bg-green-400 notice"><%= notice %></p>
+    <% end %>
+    <% unless alert.nil? %>
+      <p class="flex items-center justify-center h-10 pl-4 font-sans text-sm text-white bg-green-400 alert"><%= alert %></p>
+    <% end %>
+    
+
+    <nav class="py-2 bg-white border-b border-gray-400 ">
+      <%= link_to root_path do %>
+        <h1 class="pl-4 text-xl font-bold text-gray-700">SYNDIC</h1>
+      <% end %>
+    </nav>
+   
+    
+    
     <%= yield %>
+      
+    
   </body>
+
 </html>
