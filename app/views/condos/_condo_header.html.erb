@@ -1,3 +1,7 @@
 <div class="flex flex-wrap items-center h-12 pl-4 bg-blue-500 border-b">
-  <p class="text-xl font-semibold text-white">Condos</p>
+  <% if condo == "Condos" %>
+    <p class="text-lg font-semibold text-white">Condos</p>
+  <% else %>
+    <p class="text-lg font-semibold text-white"><%= condo.name %></p>
+  <% end %>
 </div>

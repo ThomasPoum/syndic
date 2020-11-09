@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_11_08_103136) do
+ActiveRecord::Schema.define(version: 2020_11_09_092610) do
 
   create_table "condos", force: :cascade do |t|
     t.string "name"
@@ -23,9 +23,24 @@ ActiveRecord::Schema.define(version: 2020_11_08_103136) do
     t.index ["user_id"], name: "index_condos_on_user_id"
   end
 
+  create_table "expenses", force: :cascade do |t|
+    t.string "nature"
+    t.string "company"
+    t.text "description"
+    t.float "estimated"
+    t.float "real"
+    t.integer "exercice"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.integer "condo_id"
+    t.integer "user_id"
+    t.index ["condo_id"], name: "index_expenses_on_condo_id"
+    t.index ["user_id"], name: "index_expenses_on_user_id"
+  end
+
   create_table "properties", force: :cascade do |t|
     t.string "address"
-    t.integer "floor"
+    t.string "floor"
     t.integer "surface"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
@@ -43,12 +58,15 @@ ActiveRecord::Schema.define(version: 2020_11_08_103136) do
     t.datetime "remember_created_at"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.string "fullname"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
   add_foreign_key "condos", "properties"
   add_foreign_key "condos", "users"
+  add_foreign_key "expenses", "condos"
+  add_foreign_key "expenses", "users"
   add_foreign_key "properties", "condos"
   add_foreign_key "properties", "users"
 end

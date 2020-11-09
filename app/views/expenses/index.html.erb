@@ -1,0 +1,40 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Expenses</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Nature</th>
+      <th>Company</th>
+      <th>Description</th>
+      <th>Estimated</th>
+      <th>Real</th>
+      <th>Exercice</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @expenses.each do |expense| %>
+      <tr>
+        <td><%= expense.nature %></td>
+        <td><%= expense.company %></td>
+        <td><%= expense.description %></td>
+        <td><%= expense.estimated %></td>
+        <td><%= expense.real %></td>
+        <td><%= expense.exercice %></td>
+        <td><%= link_to 'Show', condo_expense_path(expense.condo, expense) %></td>
+        <td><%= link_to 'Edit', edit_condo_expense_path(expense.condo, expense) %></td>
+        <td><%= link_to 'Destroy', condo_expense_path(expense.condo, expense), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+<%= link_to 'New Expense', new_condo_expense_path %>
+<br>
+<%= link_to 'Back', condos_path %>
+
+

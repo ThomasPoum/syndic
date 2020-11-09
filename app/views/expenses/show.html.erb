@@ -1,0 +1,34 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Nature:</strong>
+  <%= @expense.nature %>
+</p>
+
+<p>
+  <strong>Company:</strong>
+  <%= @expense.company %>
+</p>
+
+<p>
+  <strong>Description:</strong>
+  <%= @expense.description %>
+</p>
+
+<p>
+  <strong>Estimated:</strong>
+  <%= @expense.estimated %>
+</p>
+
+<p>
+  <strong>Real:</strong>
+  <%= @expense.real %>
+</p>
+
+<p>
+  <strong>Exercice:</strong>
+  <%= @expense.exercice %>
+</p>
+
+<%= link_to 'Edit', edit_condo_expense_path(@expense.condo, @expense) %> |
+<%= link_to 'Back', condo_expenses_path(@expense.condo) %>

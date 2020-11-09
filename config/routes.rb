@@ -2,11 +2,21 @@ Rails.application.routes.draw do
 
 
 
-  resources :condos
-  resources :properties
+  
+  resources :condos do
+    resources :properties
+    resources :expenses
+
+  end
+    
+    
+  
   
   devise_for :users
 
-  root to: "properties#index"
+ 
+    
+  root to: "home#index"
+   
 
 end

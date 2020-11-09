@@ -1,0 +1,52 @@
+<%= form_with(model: [@condo, expense], local: true) do |form| %>
+  <% if expense.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(expense.errors.count, "error") %> prohibited this expense from being saved:</h2>
+
+      <ul>
+        <% expense.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :nature %>
+    <%= form.text_field :nature %>
+  </div>
+
+  <div class="field">
+    <%= form.label :company %>
+    <%= form.text_field :company %>
+  </div>
+
+  <div class="field">
+    <%= form.label :description %>
+    <%= form.text_area :description %>
+  </div>
+
+  <div class="field">
+    <%= form.label :estimated %>
+    <%= form.text_field :estimated %>
+  </div>
+
+  <div class="field">
+    <%= form.label :real %>
+    <%= form.text_field :real %>
+  </div>
+
+  <div class="field">
+    <%= form.label :exercice %>
+    <%= form.number_field :exercice %>
+  </div>
+
+  <div class="select">
+    <%= form.label :condo_id %>
+    <%= form.select(:condo_id, Condo.all.collect { |u| [u.name, u.id] }, { prompt: "Choose a condo" }) %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

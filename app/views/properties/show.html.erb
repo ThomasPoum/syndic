@@ -15,8 +15,13 @@
     <%= @property.surface %> m2
   </p>
 
-  <%= link_to 'Edit', edit_property_path(@property) %> |
-  <%= link_to 'Back', properties_path %>
+  <p>
+    <strong>Owner:</strong>
+    <%= @property.user.fullname %>
+  </p>
+
+  <%= link_to 'Edit', edit_condo_property_path(@condo, @property) %> |
+  <%= link_to 'Back', condo_path(@condo) %>
 
 <% end %>
 

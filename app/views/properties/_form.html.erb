@@ -1,4 +1,4 @@
-<%= form_with(model: property, local: true) do |form| %>
+<%= form_with(model: [@condo, property], local: true) do |form| %>
   <% if property.errors.any? %>
     <div id="error_explanation" class="mt-4 mb-4 text-sm text-red-500 bg-red-200 border border-red-600 rounded-sm">
       <h2 class="pl-2"><%= pluralize(property.errors.count, "error") %> prohibited this property from being saved:</h2>
@@ -18,7 +18,7 @@
 
   <div class="field">
     <%= form.label :floor %>
-    <%= form.number_field :floor %>
+    <%= form.text_field :floor %>
   </div>
 
   <div class="field">
@@ -28,10 +28,11 @@
 
   <div class="select">
     <%= form.label :condo_id %>
-    <%= form.select(:condo_id, Condo.all.collect { |u| [u.name, u.id] }, { prompt: "Choose a codo" }) %>
+    <%= form.select(:condo_id, Condo.all.collect { |u| [u.name, u.id] }, { prompt: "Choose a condo" }) %>
   </div>
+  
 
   <div class="actions">
-    <%= form.submit class:"btn btn-small btn-purple" %>
+    <%= form.submit class:"btn btn-small btn-blue" %>
   </div>
 <% end %>

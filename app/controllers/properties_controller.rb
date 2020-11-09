@@ -1,4 +1,7 @@
 class PropertiesController < ApplicationController
+  
+  before_action :authenticate_user!
+  before_action :set_condo
   before_action :set_property, only: [:show, :edit, :update, :destroy]
 
   # GET /properties
@@ -11,11 +14,12 @@ class PropertiesController < ApplicationController
   # GET /properties/1.json
   def show
     @condo = @property.condo
+    @user = @property.user_id
   end
 
   # GET /properties/new
   def new
-    @property = current_user.properties.build
+    @property = @condo.properties.build
   end
 
   # GET /properties/1/edit
@@ -25,12 +29,12 @@ class PropertiesController < ApplicationController
   # POST /properties
   # POST /properties.json
   def create
-    @property = current_user.properties.build(property_params)
+    @property = @condo.properties.build(property_params)
     @property.user_id = current_user.id
 
     respond_to do |format|
       if @property.save
-        format.html { redirect_to @property, notice: 'Property was successfully created.' }
+        format.html { redirect_to @property.condo, notice: 'Property was successfully created.' }
         format.json { render :show, status: :created, location: @property }
       else
         format.html { render :new }
@@ -44,7 +48,7 @@ class PropertiesController < ApplicationController
   def update
     respond_to do |format|
       if @property.update(property_params)
-        format.html { redirect_to @property, notice: 'Property was successfully updated.' }
+        format.html { redirect_to @property.condo, notice: 'Property was successfully updated.' }
         format.json { render :show, status: :ok, location: @property }
       else
         format.html { render :edit }
@@ -58,7 +62,7 @@ class PropertiesController < ApplicationController
   def destroy
     @property.destroy
     respond_to do |format|
-      format.html { redirect_to properties_url, notice: 'Property was successfully destroyed.' }
+      format.html { redirect_to @property.condo, notice: 'Property was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
@@ -66,7 +70,11 @@ class PropertiesController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_property
-      @property = Property.find(params[:id])
+      @property = @condo.properties.find(params[:id])
+    end
+
+    def set_condo
+      @condo = Condo.find(params[:condo_id])
     end
 
     # Only allow a list of trusted parameters through.

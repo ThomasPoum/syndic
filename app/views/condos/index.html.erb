@@ -1,36 +1,16 @@
-<%= render "condo_header" %>
+
+ <%= render "condo_header", condo: "Condos" %>
 
 <% content_for :primary_content do %>
-
-  <h1>Condos</h1>
-
-  <table>
-    <thead>
-      <tr>
-        <th>Name</th>
-        <th>Number of properties</th>
-      </tr>
-    </thead>
-
-    <tbody>
-      <% @condos.each do |condo| %>
-        <tr>
-          <td><%= condo.name %></td><
-          <td class="flex justify-center"><%= condo.properties.count %></td>
-          <td><%= link_to 'Show', condo %></td>
-          <td><%= link_to 'Edit', edit_condo_path(condo) %></td>
-          <td><%= link_to 'Destroy', condo, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-        </tr>
-      <% end %>
-    </tbody>
-  </table>
+ 
+    <%= render @condos %>
 
 <% end %>
 
 <% content_for :secondary_content do %>
 
-  <%= link_to 'New Condo', new_condo_path, class:"btn btn-purple btn-small" %>
+  <%= link_to 'New Condo', new_condo_path, class:"btn btn-blue btn-small" %>
 
 <% end %>
 
-<%= render "basic_layout" %>
+<%= render "basic_layout" %>  

@@ -1,13 +1,44 @@
+<%= render "condo_header", condo: @condo %>
+
 <% content_for :primary_content do %>
 
-<p>
-  <strong>Name:</strong>
-  <%= @condo.name %>
-  <%= @condo.properties.count %>
-</p>
+  <p>
+    <%= pluralize(@condo.properties.count , "property") %>
+  </p>
 
-<%= link_to 'Edit', edit_condo_path(@condo) %> |
-<%= link_to 'Back', condos_path %>
+
+  <%= render @condo.properties %>
+
+  <% if author_of(@condo) %>
+  <div class="flex justify-end mt-4">
+    <%= link_to "Add new property", new_condo_property_path(:condo_id => @condo.id), class:"btn btn-small btn-blue pt-10" %>
+  </div>
+  <% end %>
+<% end %>
+
+<% content_for :secondary_content do %>
+  <div class="flex flex-wrap items-center justify-around mb-4">
+    
+      <%= link_to 'Edit', edit_condo_path(@condo), class:"btn btn-outline btn-small" %>
+      <%= link_to 'Back', condos_path, class:"btn btn-outline btn-small"  %>
+  </div>
+    
+  <hr class="border-b border-gray-200">
+
+  <div class="flex justify-center mt-4 mb-4 ">
+
+    <%= link_to 'See budget', condo_expenses_path(@condo, @condo.expenses), class:"btn btn-blue btn-small" %>
+
+  </div>
+
+    <hr class="border-b border-gray-200">
+
+  <div class="flex flex-wrap justify-start flex-1 mt-4">
+
+  
+    <%= render @condo.expenses %>
+
+  </div>
 
 <% end %>
 

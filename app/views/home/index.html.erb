@@ -1,2 +1,22 @@
-<h1>Home#index</h1>
-<p>Find me in app/views/home/index.html.erb</p>
+<div class="container flex flex-wrap justify-center h-20 m-auto mt-6">
+  <div class="flex flex-wrap w-3/5 bg-white border rounded-sm">
+    
+    <div class="flex justify-center w-full ml-6">
+      <h1 class="mt-6 mb-6 text-2xl font-bold text-blue-700 ">Découvrez la gestion de syndic coopérative</h1>
+    </div>
+
+    <div class="flex flex-wrap">
+
+    
+        <%= image_tag "illustration.svg", class:"w-1/2 flex pr-2 pl-2 pt-2 pb-8" %>
+      
+
+      <div class="flex items-center justify-center w-1/2 mb-2 h-max">
+        <%= render "devise/shared/login" %>
+      </div>
+
+    </div>
+
+
+  </div>
+</div>

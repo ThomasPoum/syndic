@@ -14,6 +14,14 @@
   @apply bg-purple-700;
 }
 
+.btn-blue {
+  @apply bg-blue-500 text-white;
+}
+
+.btn-blue:hover {
+  @apply bg-blue-600;
+}
+
 .btn-green {
   @apply bg-green-600 text-white;
 }

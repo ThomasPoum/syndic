@@ -23,13 +23,26 @@
     
 
     <nav class="flex flex-wrap items-center py-2 bg-white border-b border-gray-400 ">
+      
+      <% if user_signed_in? %>
+      <%= link_to condos_path do %>
+        <h1 class="pl-4 text-xl font-bold text-gray-700 ">SYNDIC</h1>
+      <% end %>
+      <% else %>
       <%= link_to root_path do %>
         <h1 class="pl-4 text-xl font-bold text-gray-700 ">SYNDIC</h1>
       <% end %>
+      <% end %>
+      
 
       <div class="flex flex-wrap ml-8">
-        <%= link_to "Properties", properties_path, class:"btn btn-outline btn-small mr-2" %>
-        <%= link_to "Condos", condos_path, class:"btn btn-outline btn-small" %>
+        <% if user_signed_in? %>
+          <%= link_to "Condos", condos_path, class:"btn btn-outline btn-small mr-2" %>
+          <%= link_to "Sign out", destroy_user_session_path, method: :delete, class:"btn btn-outline btn-small mr-2" %>
+        <% else %>
+          <%= link_to "Sign In", new_user_session_path, class:"btn btn-outline btn-small mr-2" %>
+          <%= link_to "Sign Up", new_user_registration_path, class:"btn btn-outline btn-small mr-2" %>
+        <% end %>
       </div>
 
         <div class="flex flex-wrap items-center justify-end flex-1 w-full mr-6">
