@@ -1,5 +1,9 @@
-<h1>New Expense</h1>
+<% content_for :primary_content do %>
+
+<div class="mb-4 ml-4 font-semibold text-blue-800">New Expense</div>
 
 <%= render 'form', expense: @expense %>
 
-<%= link_to 'Back', condo_expenses_path %>
+<% end %>
+
+<%= render "basic_layout" %>

@@ -1,17 +1,25 @@
-<div class="flex flex-wrap items-center justify-start flex-1 h-20 pl-2 mt-4 border rounded-sm" >
+<div class="flex flex-wrap items-center justify-start flex-1 h-20 pl-2 mt-4 border rounded-sm">
 
-<%= link_to condo do %>
+  <%= link_to condo do %>
     <span class="font-semibold text-gray-700"><%= condo.name %> </span>
-    <% end %>
-    <span class="text-sm text-gray-500 item-center">. with <%= pluralize(condo.properties.count, "property") %></span>
-    <div class="flex flex-wrap items-center justify-end flex-1">
+  <% end %>
+
+  <span class="text-sm text-gray-500 item-center">. with <%= pluralize(condo.properties.count, "property") %></span>
+
+  <div class="flex flex-wrap items-center justify-end flex-1">
+
+    <% if author_of(condo) %>
 
       <%= link_to edit_condo_path(condo), class:"mr-2" do %>
         <%= render_svg "icons/edit" %>
       <% end %>
+
       <%= link_to condo, method: :delete, data: { confirm: 'Are you sure?' }, class:"mr-2" do %>
         <%= render_svg "icons/delete" %>
       <% end %>
-  </div>
+
+    <% end %>
 
   </div>
+
+</div>

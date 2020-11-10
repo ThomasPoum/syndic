@@ -1,7 +1,8 @@
 <div class="flex flex-wrap items-center h-12 pl-4 bg-blue-500 border-b">
   <% if condo == "Condos" %>
-    <p class="text-lg font-semibold text-white">Condos</p>
+    <p class="text-lg font-semibold text-white">My condos</p>
   <% else %>
     <p class="text-lg font-semibold text-white"><%= condo.name %></p>
+    <%= link_to "edit", edit_condo_path(condo), class:"ml-6 text-sm text-gray-200 no-underline border border-gray-200 rounded pr-2 pl-2" %>
   <% end %>
 </div>

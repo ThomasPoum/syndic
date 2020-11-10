@@ -1,4 +1,6 @@
-<p id="notice"><%= notice %></p>
+<% content_for :primary_content do %>
+
+<div class="mb-4 ml-4 font-semibold text-blue-800">Expense</div>
 
 <p>
   <strong>Nature:</strong>
@@ -30,5 +32,13 @@
   <%= @expense.exercice %>
 </p>
 
+<p>
+  <strong>Condo:</strong>
+  <%= @expense.condo.name %>
+</p>
+
 <%= link_to 'Edit', edit_condo_expense_path(@expense.condo, @expense) %> |
-<%= link_to 'Back', condo_expenses_path(@expense.condo) %>
+<%= link_to 'Back', condo_budget_path(@condo) %>
+<% end %>
+
+<%= render "basic_layout" %>

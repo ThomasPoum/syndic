@@ -7,7 +7,6 @@ class CondosController < ApplicationController
   # GET /condos.json
   def index
     @condos = Condo.all
-    
   end
 
   # GET /condos/1

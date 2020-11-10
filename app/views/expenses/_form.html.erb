@@ -1,3 +1,5 @@
+
+
 <%= form_with(model: [@condo, expense], local: true) do |form| %>
   <% if expense.errors.any? %>
     <div id="error_explanation">
@@ -11,42 +13,47 @@
     </div>
   <% end %>
 
+<div class="flex flex-col justify-end">
   <div class="field">
     <%= form.label :nature %>
-    <%= form.text_field :nature %>
+    <%= form.text_field :nature, class:" text-field " %>
   </div>
 
   <div class="field">
     <%= form.label :company %>
-    <%= form.text_field :company %>
+    <%= form.text_field :company , class:"text-field w-1/2"%>
   </div>
 
-  <div class="field">
+  <div class="flex items-center field">
     <%= form.label :description %>
-    <%= form.text_area :description %>
+    <%= form.text_area :description, class:"bg-gray-200 rounded w-1/2 ml-1 mb-2 p-2" %>
   </div>
 
   <div class="field">
     <%= form.label :estimated %>
-    <%= form.text_field :estimated %>
+    <%= form.text_field :estimated, class:"text-field" %>
   </div>
 
   <div class="field">
     <%= form.label :real %>
-    <%= form.text_field :real %>
+    <%= form.text_field :real, class:"text-field" %>
   </div>
 
   <div class="field">
     <%= form.label :exercice %>
-    <%= form.number_field :exercice %>
+    <%= form.number_field :exercice, class:"text-field" %>
   </div>
 
-  <div class="select">
+  </div>
+
+  <div class="hidden select">
     <%= form.label :condo_id %>
     <%= form.select(:condo_id, Condo.all.collect { |u| [u.name, u.id] }, { prompt: "Choose a condo" }) %>
   </div>
-
+<div class="flex flex-wrap justify-end">
+  <%= link_to 'Back', condo_budget_path(@condo), class:"flex items-center mr-4 text-sm text-gray-500" %>
   <div class="actions">
-    <%= form.submit %>
+    <%= form.submit class:"btn btn-small btn-blue mt-2 mb-2" %>
   </div>
+</div>
 <% end %>

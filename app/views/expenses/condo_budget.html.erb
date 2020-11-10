@@ -1,0 +1,14 @@
+<div class="flex flex-wrap items-center h-12 pl-4 bg-blue-500 border-b">
+  <p class="text-lg font-semibold text-white">Budget of <%= @condo.name %>
+  </p>
+</div>
+
+<% content_for :primary_content do %>
+  <%= render "budget", { condo: @condo, test: Time.zone.now.year } %>
+<% end %>
+
+<% content_for :secondary_content do %>
+    <%= link_to "Return to condo", condo_path(@condo), class:"btn btn-small btn-outline"%>
+<% end %>
+
+<%= render "basic_layout" %>

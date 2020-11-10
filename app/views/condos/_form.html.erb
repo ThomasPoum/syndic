@@ -12,11 +12,19 @@
   <% end %>
 
   <div class="field">
-    <%= form.label :name %>
-    <%= form.text_field :name %>
+    <%= form.label "Address:", class:"mr-2 text-gray-700" %>
+    <%= form.text_field :name, class:"bg-gray-200 rounded mb-4 h-10 pl-2 w-1/2", placeholder: "Address" %>
   </div>
+<div class="flex justify-end">
 
-  <div class="actions">
-    <%= form.submit %>
+  <% if Rails.application.routes.url_helpers.method_defined?(:condo_path) %>
+    <%= link_to 'Back', condos_path, class:"flex items-center mr-4 text-sm text-gray-500" %>
+  <% else %>
+    <%= link_to 'Back', condo_path, class:"flex items-center mr-4 text-sm text-gray-500" %>
+  <% end %>
+  
+  <div class="flex actions">
+    <%= form.submit class:"btn btn-blue btn-small" %>
+  </div>
   </div>
 <% end %>

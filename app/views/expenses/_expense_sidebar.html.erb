@@ -1,0 +1,18 @@
+
+<div class="flex flex-wrap justify-start w-full p-2 mb-2 bg-gray-100 rounded-md hover:bg-gray-200">
+
+  <div class="flex justify-end w-3/4 text-sm text-gray-600">
+    <%= link_to condo_expense_path(expense.condo, expense) do %>
+    <%= expense.nature %>
+      <% end %>
+    <div class="ml-4 text-gray-600">
+    <%= expense.estimated %> €
+    </div>
+  </div>
+
+  <div class="flex justify-start w-1/4 pl-4 text-sm text-gray-600">
+    <%= expense.real %> €
+  </div>
+
+</div>
+

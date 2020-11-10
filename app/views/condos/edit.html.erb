@@ -1,12 +1,13 @@
+<%= render "condo_header", condo: @condo %>
+
 <% content_for :primary_content do %>
 
 
-  <h1>Editing Condo</h1>
+<div class="mb-4 ml-4 font-semibold text-blue-800">Editing condo</div>
 
   <%= render 'form', condo: @condo %>
 
-  <%= link_to 'Show', @condo %> |
-  <%= link_to 'Back', condos_path %>
+
 
 <% end %>
 

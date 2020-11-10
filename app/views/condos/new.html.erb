@@ -1,11 +1,23 @@
 <% content_for :primary_content do %>
 
-  <h1>New Condo</h1>
+  <h1 class="mb-8 text-xl font-semibold text-gray-700">We just need your condo's address to get started!</h1>
 
   <%= render 'form', condo: @condo %>
 
-  <%= link_to 'Back', condos_path %>
+ 
 
+<% end %>
+
+<% content_for :secondary_content do %>
+  <div class="mt-2 mb-6 font-semibold text-center text-gray-700">
+  Create your condo and manage it have never been that easy !
+  </div>
+  <div class="flex justify-center ">
+    <div class="flex w-3/5">
+      <%= image_tag "visuel-accompagnement.svg" %>
+    </div>
+  </div>
+  
 <% end %>
 
 <%= render "basic_layout" %>

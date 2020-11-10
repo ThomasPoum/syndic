@@ -30,7 +30,7 @@
       <% end %>
       <% else %>
       <%= link_to root_path do %>
-        <h1 class="pl-4 text-xl font-bold text-gray-700 ">SYNDIC</h1>
+        <h1 class="pl-4 text-xl font-bold text-blue-700 ">SYNDIK</h1>
       <% end %>
       <% end %>
       
@@ -39,9 +39,6 @@
         <% if user_signed_in? %>
           <%= link_to "Condos", condos_path, class:"btn btn-outline btn-small mr-2" %>
           <%= link_to "Sign out", destroy_user_session_path, method: :delete, class:"btn btn-outline btn-small mr-2" %>
-        <% else %>
-          <%= link_to "Sign In", new_user_session_path, class:"btn btn-outline btn-small mr-2" %>
-          <%= link_to "Sign Up", new_user_registration_path, class:"btn btn-outline btn-small mr-2" %>
         <% end %>
       </div>
 

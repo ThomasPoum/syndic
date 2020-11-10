@@ -3,7 +3,33 @@
 
 <% content_for :primary_content do %>
  
-    <%= render @condos %>
+  <% if @condos.where(:user_id => current_user.id).empty? %>
+    <div class="flex justify-start mt-4">
+      <div class="flex w-1/2">
+        <%= image_tag "visuel-communaute-2.svg" %>
+      </div>
+
+      <div class="flex flex-wrap items-center justify-center w-1/2">
+
+        <div class="mr-2 text-xl font-semibold text-center text-gray-700">No condo registred yet? <br>
+        <br>
+          Add your first within seconds!
+        </div>
+
+        <div class="flex justify-center">
+          
+          <div class="">
+            <%= link_to "Add your first condo", new_condo_path, class:"btn btn-blue pt-2" %>
+          </div>
+
+        </div>
+      </div>
+      </div>
+  <% else %>
+
+    <%= render @condos.where(:user_id => current_user.id) %>
+
+  <% end %>
 
 <% end %>
 

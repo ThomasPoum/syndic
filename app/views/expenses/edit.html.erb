@@ -1,6 +1,11 @@
-<h1>Editing Expense</h1>
+<% content_for :primary_content do %>
+
+
+<div class="mb-4 ml-4 font-semibold text-blue-800">Editing Expense</div>
 
 <%= render 'form', expense: @expense %>
 
-<%= link_to 'Show', @expense %> |
-<%= link_to 'Back', expenses_path %>
+
+<% end %>
+
+<%= render "basic_layout" %>

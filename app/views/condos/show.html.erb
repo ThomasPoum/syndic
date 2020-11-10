@@ -2,43 +2,78 @@
 
 <% content_for :primary_content do %>
 
-  <p>
+<% unless @condo.properties.count == 0  %>
+
+  <p class="mb-4 ml-4 font-semibold text-blue-800">
     <%= pluralize(@condo.properties.count , "property") %>
   </p>
+  <% end %>
 
+  <% if @condo.properties.empty? %>
+    <div class="flex justify-start mt-4">
+      <div class="flex w-1/2">
+        <%= image_tag "visuel-communaute-2.svg" %>
+      </div>
+
+      <div class="flex flex-wrap items-center justify-center w-1/2">
+
+        <div class="mr-2 text-xl font-semibold text-center text-gray-700">Condo without property? <br>
+        <br>
+          Simply add your first within seconds!
+        </div>
+
+        <div class="flex justify-center">
+          <% if author_of(@condo) %>
+            <div class="">
+              <%= link_to "Add your first property", new_condo_property_path(@condo), class:"btn btn-blue pt-2" %>
+            </div>
+          <% end %>
+        </div>
+      </div>
+
+    </div>
+
+  <% else %>
 
   <%= render @condo.properties %>
 
   <% if author_of(@condo) %>
   <div class="flex justify-end mt-4">
-    <%= link_to "Add new property", new_condo_property_path(:condo_id => @condo.id), class:"btn btn-small btn-blue pt-10" %>
+    <%= link_to "Add new property", new_condo_property_path(@condo), class:"btn btn-small btn-blue pt-10" %>
   </div>
+  <% end %>
   <% end %>
 <% end %>
 
 <% content_for :secondary_content do %>
-  <div class="flex flex-wrap items-center justify-around mb-4">
-    
-      <%= link_to 'Edit', edit_condo_path(@condo), class:"btn btn-outline btn-small" %>
-      <%= link_to 'Back', condos_path, class:"btn btn-outline btn-small"  %>
-  </div>
-    
-  <hr class="border-b border-gray-200">
-
+  
   <div class="flex justify-center mt-4 mb-4 ">
 
-    <%= link_to 'See budget', condo_expenses_path(@condo, @condo.expenses), class:"btn btn-blue btn-small" %>
+    <%= link_to 'See detailled budget', condo_budget_path(@condo), class:"btn btn-blue btn-small" %>
 
   </div>
 
     <hr class="border-b border-gray-200">
 
-  <div class="flex flex-wrap justify-start flex-1 mt-4">
-
   
-    <%= render @condo.expenses %>
+    <% if @condo.expenses.empty? %>
 
-  </div>
+    <div class="flex flex-col mt-4">
+      <div class="flex justify-center mb-4 font-semibold text-gray-800">No expense yet?</div>
+        <div>
+        <%= link_to 'Add your first expense', new_condo_expense_path(@condo), class:"btn btn-blue btn-small flex justify-center" %>
+        </div>
+      </div>
+
+    <% else %>
+    <div class="flex flex-wrap justify-start flex-1 mt-4">
+      <% @condo.expenses.each do |e| %>
+        <%= render "expenses/expense_sidebar", expense: e %>
+      <% end %>
+       </div>
+    <% end %>
+    
+ 
 
 <% end %>
 
