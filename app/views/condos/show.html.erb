@@ -4,7 +4,7 @@
 
 <% unless @condo.properties.count == 0  %>
 
-  <p class="mb-4 ml-4 font-semibold text-blue-800">
+  <p class="mt-2 mb-8 ml-2 text-xl font-medium leading-5 text-gray-700">
     <%= pluralize(@condo.properties.count , "property") %>
   </p>
   <% end %>
@@ -47,31 +47,27 @@
 
 <% content_for :secondary_content do %>
   
-  <div class="flex justify-center mt-4 mb-4 ">
-
-    <%= link_to 'See detailled budget', condo_budget_path(@condo), class:"btn btn-blue btn-small" %>
-
-  </div>
-
-    <hr class="border-b border-gray-200">
-
-  
-    <% if @condo.expenses.empty? %>
+  <% if @condo.expenses.empty? %>
 
     <div class="flex flex-col mt-4">
-      <div class="flex justify-center mb-4 font-semibold text-gray-800">No expense yet?</div>
-        <div>
-        <%= link_to 'Add your first expense', new_condo_expense_path(@condo), class:"btn btn-blue btn-small flex justify-center" %>
-        </div>
+      <div class="flex justify-center mb-4 font-semibold text-gray-800">No expense yet?
       </div>
+      <div>
+      <%= link_to 'Add your first expense', new_condo_expense_path(@condo), class:"btn btn-blue btn-small flex justify-center" %>
+      </div>
+    </div>
 
-    <% else %>
-    <div class="flex flex-wrap justify-start flex-1 mt-4">
-      Total expenditures of the year <%= @expenses.sum(:estimated) %> €
-       </div>
-    <% end %>
-    
- 
+  <% else %>
+
+    <div class="flex flex-wrap justify-center flex-1 mt-2 mb-4 font-medium leading-5 text-gray-700">
+    Total spent this year <%= @invoices.sum(:amount) %> € on <%= @expenses.sum(:estimated) %> € estimated
+    </div>
+
+    <div class="flex justify-center mt-4 ">
+      <%= link_to 'See detailled budget', condo_budget_path(@condo), class:"btn btn-blue btn-small" %>
+    </div>
+
+  <% end %>
 
 <% end %>
 

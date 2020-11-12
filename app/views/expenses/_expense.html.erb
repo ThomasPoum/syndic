@@ -1,34 +1,36 @@
 
-<div>
-<div class="flex flex-wrap justify-start w-full p-2 bg-gray-100 rounded-md hover:bg-gray-200">
+<div class="mb-2" >
 
-  <div class="flex justify-start w-1/2 text-sm text-gray-600">
-    <%= link_to condo_expense_path(expense.condo, expense), class:"w-1/2 flex" do %>
-      <%= expense.nature %>
-    <% end %>
-    <div class="w-1/2 pl-4 text-gray-600">
-      -
+  <div class="flex flex-wrap justify-start w-full p-2 bg-gray-100 rounded-md cursor-pointer hover:bg-gray-200 dropdown">
+
+    <div class="flex justify-start w-1/2 text-sm text-gray-600">
+      <%#= link_to condo_expense_path(expense.condo, expense), class:"w-1/2 flex" do %>
+        <%= expense.nature %>
+      <%# end %>
+      <div class="w-1/2 pl-4 text-gray-600">
+        -
+      </div>
+    </div>
+
+    <div class="flex w-1/3">
+      <div class="flex justify-end w-1/2 text-sm text-gray-600">
+        <%= expense.estimated %> €
+      </div>
+    
+      <div class="flex justify-end w-1/2 text-sm text-gray-600">
+        <%= expense.invoices.sum(:amount) %> €
+      </div>
+    </div>
+
+    <div class="flex justify-end w-1/6">
+      <%= link_to edit_condo_expense_path(expense.condo, expense) do %>
+        <%= render_svg "icons/edit" %>
+      <% end %>
     </div>
   </div>
 
-  <div class="flex w-1/3">
-    <div class="flex justify-end w-1/2 text-sm text-gray-600">
-      <%= expense.estimated %> €
-    </div>
-  
-    <div class="flex justify-end w-1/2 text-sm text-gray-600">
-      <%= expense.invoices.sum(:amount) %> €
-    </div>
+  <div class="hidden drop-js">
+    <%= render expense.invoices, { invoice: expense.invoices, expense: expense } %>
   </div>
 
-  <div class="flex justify-end w-1/6">
-    <%= link_to edit_condo_expense_path(expense.condo, expense) do %>
-      <%= render_svg "icons/edit" %>
-    <% end %>
-  </div>
-
-</div>
-<div class="mb-2">
-<%= render expense.invoices, { invoice: expense.invoices, expense: expense } %>
-</div>
 </div>

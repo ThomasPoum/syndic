@@ -1,34 +1,72 @@
-<p id="notice"><%= notice %></p>
+<% content_for :primary_content do %>
 
-<p>
-  <strong>Date invoice:</strong>
-  <%= @invoice.date_invoice %>
-</p>
+<div class="overflow-hidden bg-white shadow sm:rounded-lg">
+  <div class="px-4 py-5 border-b border-gray-200 sm:px-6">
+    <h3 class="text-lg font-medium leading-6 text-gray-900">
+      Invoice
+    </h3>
+    <p class="max-w-2xl mt-1 text-sm leading-5 text-gray-500">
+      Details on the invoice.
+    </p>
+  </div>
+  <div>
+    <dl>
+      <div class="px-4 py-5 bg-gray-50 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+        <dt class="text-sm font-medium leading-5 text-gray-500">
+         Company:
+        </dt>
+        <dd class="mt-1 text-sm leading-5 text-gray-900 sm:mt-0 sm:col-span-2">
+          <%= @invoice.company %>
+        </dd>
+      </div>
+      <div class="px-4 py-5 bg-white sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+        <dt class="text-sm font-medium leading-5 text-gray-500">
+          Date of invoice:
+        </dt>
+        <dd class="mt-1 text-sm leading-5 text-gray-900 sm:mt-0 sm:col-span-2">
+          <%= @invoice.date_invoice %>
+        </dd>
+      </div>
+      <div class="px-4 py-5 bg-gray-50 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+        <dt class="text-sm font-medium leading-5 text-gray-500">
+          Amount:
+        </dt>
+        <dd class="mt-1 text-sm leading-5 text-gray-900 sm:mt-0 sm:col-span-2">
+          <%= @invoice.amount %> €
+        </dd>
+      </div>
+      <div class="px-4 py-5 bg-white sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+        <dt class="text-sm font-medium leading-5 text-gray-500">
+          Paid status:
+        </dt>
+        <dd class="mt-1 text-sm leading-5 text-gray-900 sm:mt-0 sm:col-span-2">
+         <%= @invoice.paid %>
+        </dd>
+      </div>
+      <div class="px-4 py-5 bg-gray-50 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+        <dt class="text-sm font-medium leading-5 text-gray-500">
+          Expense related:
+        </dt>
+        <dd class="mt-1 text-sm leading-5 text-gray-900 sm:mt-0 sm:col-span-2">
+            <%= @invoice.expense.nature %>
+        </dd>
+      </div>
+      <div class="px-4 py-5 bg-gray-50 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+        <dt class="text-sm font-medium leading-5 text-gray-500">
+          Description & added info
+        </dt>
+        <dd class="mt-1 text-sm leading-5 text-gray-900 sm:mt-0 sm:col-span-2">
+          <%= @invoice.description %>
+        </dd>
+      </div>
+      <div class="flex justify-end px-4 py-5 bg-white">
+        <%= link_to 'Back', condo_budget_path(@condo), class:"flex items-center mr-4 text-sm text-gray-500" %>
+        <%= link_to 'Edit', edit_invoice_path(@invoice, condo: @condo), class:"btn btn-small btn-blue mt-2 mb-2" %>
+        
+      </div>
+    </dl>
+  </div>
+</div>
+<% end %>
 
-<p>
-  <strong>Company:</strong>
-  <%= @invoice.company %>
-</p>
-
-<p>
-  <strong>Description:</strong>
-  <%= @invoice.description %>
-</p>
-
-<p>
-  <strong>Amount:</strong>
-  <%= @invoice.amount %>
-</p>
-
-<p>
-  <strong>Paid:</strong>
-  <%= @invoice.paid %>
-</p>
-
-<p>
-  <strong>Expense:</strong>
-  <%= @invoice.expense_id %>
-</p>
-
-<%= link_to 'Edit', edit_invoice_path(@invoice) %> |
-<%= link_to 'Back', condos_path %>
+<%= render "basic_layout" %>

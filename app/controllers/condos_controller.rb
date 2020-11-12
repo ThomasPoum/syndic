@@ -13,6 +13,7 @@ class CondosController < ApplicationController
   # GET /condos/1.json
   def show
     @expenses = Expense.of_this_year.where(condo: @condo)
+    @invoices = Invoice.where(expense: @expenses)
   end
 
   # GET /condos/new

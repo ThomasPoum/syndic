@@ -1,27 +1,64 @@
 <% content_for :primary_content do %>
 
-  <p>
-    <strong>Address:</strong>
-    <%= @property.address %>
-  </p>
-
-  <p>
-    <strong>Floor:</strong>
-    <%= @property.floor %>
-  </p>
-
-  <p>
-    <strong>Surface:</strong>
-    <%= @property.surface %> m2
-  </p>
-
-  <p>
-    <strong>Owner:</strong>
-    <%= @property.user.fullname %>
-  </p>
-
-  <%= link_to 'Edit', edit_condo_property_path(@condo, @property) %> |
-  <%= link_to 'Back', condo_path(@condo) %>
+<div class="overflow-hidden bg-white shadow sm:rounded-lg">
+  <div class="px-4 py-5 border-b border-gray-200 sm:px-6">
+    <h3 class="text-lg font-medium leading-6 text-gray-900">
+      <%= @property.address%>
+    </h3>
+    <p class="max-w-2xl mt-1 text-sm leading-5 text-gray-500">
+      Details on the property.
+    </p>
+  </div>
+  <div>
+    <dl>
+      <div class="px-4 py-5 bg-gray-50 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+        <dt class="text-sm font-medium leading-5 text-gray-500">
+          Address:
+        </dt>
+        <dd class="mt-1 text-sm leading-5 text-gray-900 sm:mt-0 sm:col-span-2">
+          <%= @property.address %>
+        </dd>
+      </div>
+      <div class="px-4 py-5 bg-white sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+        <dt class="text-sm font-medium leading-5 text-gray-500">
+          Floor:
+        </dt>
+        <dd class="mt-1 text-sm leading-5 text-gray-900 sm:mt-0 sm:col-span-2">
+          <%= @property.floor %>
+        </dd>
+      </div>
+      <div class="px-4 py-5 bg-gray-50 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+        <dt class="text-sm font-medium leading-5 text-gray-500">
+          Surface:
+        </dt>
+        <dd class="mt-1 text-sm leading-5 text-gray-900 sm:mt-0 sm:col-span-2">
+          <%= @property.surface %> m2
+        </dd>
+      </div>
+      <div class="px-4 py-5 bg-white sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+        <dt class="text-sm font-medium leading-5 text-gray-500">
+          Owner:
+        </dt>
+        <dd class="mt-1 text-sm leading-5 text-gray-900 sm:mt-0 sm:col-span-2">
+         <%= @property.user.fullname %>
+        </dd>
+      </div>
+      <div class="px-4 py-5 bg-gray-50 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+        <dt class="text-sm font-medium leading-5 text-gray-500">
+          Description & added info
+        </dt>
+        <dd class="mt-1 text-sm leading-5 text-gray-900 sm:mt-0 sm:col-span-2">
+          <%#= @property.description %>
+        </dd>
+      </div>
+      <div class="flex justify-end px-4 py-5 bg-white">
+        <%= link_to 'Back', condo_path(@condo), class:"flex items-center mr-4 text-sm text-gray-500" %>
+        <%= link_to 'Edit', edit_condo_property_path(@condo, @property), class:"btn btn-small btn-blue mt-2 mb-2" %>
+        
+      </div>
+    </dl>
+  </div>
+</div>
 
 <% end %>
 

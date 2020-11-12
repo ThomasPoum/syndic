@@ -62,7 +62,7 @@
           </div>
 
           <div class="flex flex-wrap justify-end px-4 py-3 text-right bg-gray-50 sm:px-6">
-            <%= link_to 'Back', condos_path, class:"flex items-center mr-4 text-sm text-gray-500" %>
+            <%= link_to 'Back', condo_budget_path(condo_id: params[:condo]), class:"flex items-center mr-4 text-sm text-gray-500" %>
             <div class="actions">
               <%= form.submit class:"btn btn-small btn-blue mt-2 mb-2" %>
             </div>

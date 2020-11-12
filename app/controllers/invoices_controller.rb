@@ -12,6 +12,8 @@ class InvoicesController < ApplicationController
   # GET /invoices/1
   # GET /invoices/1.json
   def show
+    @expense = @invoice.expense
+    @condo = @expense.condo
   end
 
   # GET /invoices/new
@@ -22,6 +24,7 @@ class InvoicesController < ApplicationController
 
   # GET /invoices/1/edit
   def edit
+    
   end
 
   # POST /invoices
@@ -45,9 +48,11 @@ class InvoicesController < ApplicationController
   # PATCH/PUT /invoices/1
   # PATCH/PUT /invoices/1.json
   def update
+    @expense = @invoice.expense
+    @condo = @expense.condo
     respond_to do |format|
       if @invoice.update(invoice_params)
-        format.html { redirect_to @invoice, notice: 'Invoice was successfully updated.' }
+        format.html { redirect_to condo_budget_path(@condo), notice: 'Invoice was successfully updated.' }
         format.json { render :show, status: :ok, location: @invoice }
       else
         format.html { render :edit }
