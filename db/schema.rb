@@ -10,7 +10,10 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_11_09_092610) do
+ActiveRecord::Schema.define(version: 2020_11_11_154059) do
+
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
 
   create_table "condos", force: :cascade do |t|
     t.string "name"
@@ -25,10 +28,9 @@ ActiveRecord::Schema.define(version: 2020_11_09_092610) do
 
   create_table "expenses", force: :cascade do |t|
     t.string "nature"
-    t.string "company"
     t.text "description"
     t.float "estimated"
-    t.float "real"
+    t.float "real", default: 0.0
     t.integer "exercice"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
@@ -36,6 +38,20 @@ ActiveRecord::Schema.define(version: 2020_11_09_092610) do
     t.integer "user_id"
     t.index ["condo_id"], name: "index_expenses_on_condo_id"
     t.index ["user_id"], name: "index_expenses_on_user_id"
+  end
+
+  create_table "invoices", force: :cascade do |t|
+    t.date "date_invoice"
+    t.string "company"
+    t.text "description"
+    t.float "amount"
+    t.boolean "paid"
+    t.bigint "expense_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.bigint "user_id"
+    t.index ["expense_id"], name: "index_invoices_on_expense_id"
+    t.index ["user_id"], name: "index_invoices_on_user_id"
   end
 
   create_table "properties", force: :cascade do |t|
@@ -46,6 +62,7 @@ ActiveRecord::Schema.define(version: 2020_11_09_092610) do
     t.datetime "updated_at", precision: 6, null: false
     t.integer "condo_id"
     t.integer "user_id"
+    t.integer "repart"
     t.index ["condo_id"], name: "index_properties_on_condo_id"
     t.index ["user_id"], name: "index_properties_on_user_id"
   end
@@ -67,6 +84,8 @@ ActiveRecord::Schema.define(version: 2020_11_09_092610) do
   add_foreign_key "condos", "users"
   add_foreign_key "expenses", "condos"
   add_foreign_key "expenses", "users"
+  add_foreign_key "invoices", "expenses"
+  add_foreign_key "invoices", "users"
   add_foreign_key "properties", "condos"
   add_foreign_key "properties", "users"
 end

@@ -13,24 +13,20 @@
           <%= render "devise/shared/error_messages", resource: resource %>
 
           <div class="field">
-            
             <%= f.text_field :fullname, autofocus: true, autocomplete: "full-name", placeholder: "Fullname",  class:"bg-gray-200 rounded-sm h-10 pl-2 mb-2" %>
           </div>
 
           <div class="field">
-           
             <%= f.email_field :email, autocomplete: "email", placeholder: "Email",  class:"bg-gray-200 rounded-sm h-10 pl-2 mb-2" %>
           </div>
 
           <div class="field">
-            
-            
             <%= f.password_field :password, autocomplete: "new-password", placeholder: "Password",  class:"bg-gray-200 rounded-sm h-10 pl-2 " %>
           </div>
             
-            <% if @minimum_password_length %>
-            <em class="text-sm text-gray-700">(<%= @minimum_password_length %> characters minimum)</em>
-            <% end %>
+          <% if @minimum_password_length %>
+          <em class="text-sm text-gray-700">(<%= @minimum_password_length %> characters minimum)</em>
+          <% end %>
             
           <div class="field">
             <%= f.password_field :password_confirmation, autocomplete: "new-password", placeholder: "Password",  class:"bg-gray-200 rounded-sm h-10 pl-2 mb-2" %>

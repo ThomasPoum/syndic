@@ -1,0 +1,19 @@
+
+
+<div class="flex flex-wrap items-center h-12 pl-4 bg-blue-500 border-b">
+  <p class="text-lg font-semibold text-white">Budget of <%= @condo.name %>
+  </p>
+</div>
+
+<% content_for :primary_content do %>
+<div class="mb-4 ml-4 font-semibold text-blue-800">Expenses <%= Time.zone.now.year+1 %> (estimated)
+</div>
+  <%= render "budget", { expenses: @expenses, condo: @condo, time: Time.zone.now.year+1 } %>
+<% end %>
+
+<% content_for :secondary_content do %>
+    <%= link_to "Return to condo", condo_path(@condo), class:"btn btn-small btn-outline"%>
+    <%= link_to "Budget current year", condo_budget_path(@condo), class:"btn btn-small btn-blue"%>
+<% end %>
+
+<%= render "basic_layout" %>

@@ -6,4 +6,7 @@ class Condo < ApplicationRecord
 
   validates :name, presence: true
 
+
+
+
 end

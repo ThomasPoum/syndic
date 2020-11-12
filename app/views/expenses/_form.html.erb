@@ -13,47 +13,61 @@
     </div>
   <% end %>
 
-<div class="flex flex-col justify-end">
-  <div class="field">
-    <%= form.label :nature %>
-    <%= form.text_field :nature, class:" text-field " %>
-  </div>
-
-  <div class="field">
-    <%= form.label :company %>
-    <%= form.text_field :company , class:"text-field w-1/2"%>
-  </div>
-
-  <div class="flex items-center field">
-    <%= form.label :description %>
-    <%= form.text_area :description, class:"bg-gray-200 rounded w-1/2 ml-1 mb-2 p-2" %>
-  </div>
-
-  <div class="field">
-    <%= form.label :estimated %>
-    <%= form.text_field :estimated, class:"text-field" %>
-  </div>
-
-  <div class="field">
-    <%= form.label :real %>
-    <%= form.text_field :real, class:"text-field" %>
-  </div>
-
-  <div class="field">
-    <%= form.label :exercice %>
-    <%= form.number_field :exercice, class:"text-field" %>
-  </div>
-
-  </div>
-
   <div class="hidden select">
-    <%= form.label :condo_id %>
-    <%= form.select(:condo_id, Condo.all.collect { |u| [u.name, u.id] }, { prompt: "Choose a condo" }) %>
+      <%= form.label :condo_id %>
+      <%= form.select(:condo_id, Condo.all.collect { |u| [u.name, u.id] }, { prompt: "Choose a condo" }) %>
   </div>
-<div class="flex flex-wrap justify-end">
-  <%= link_to 'Back', condo_budget_path(@condo), class:"flex items-center mr-4 text-sm text-gray-500" %>
-  <div class="actions">
-    <%= form.submit class:"btn btn-small btn-blue mt-2 mb-2" %>
+
+<div class="mt-10 sm:mt-0">
+  <div class="md:grid md:grid-cols-3 md:gap-6">
+    <div class="md:col-span-1">
+      <div class="px-4 sm:px-0">
+        <h3 class="text-lg font-medium leading-6 text-gray-900">Estimated Expense</h3>
+        <p class="mt-1 text-sm leading-5 text-gray-600">
+          Fill informations about estimated expense for your condo.
+        </p>
+      </div>
+    </div>
+    <div class="mt-5 md:mt-0 md:col-span-2">
+      <form action="#">
+        <div class="overflow-hidden shadow sm:rounded-md">
+          <div class="px-4 py-5 bg-white sm:p-6">
+            <div class="grid grid-cols-6 gap-6">
+              
+              <div class="col-span-6 sm:col-span-3">
+                <%= form.label :nature, class:"block text-sm font-medium leading-5 text-gray-700" %>
+                <%= form.text_field :nature, class:"block w-full mt-1 transition duration-150 ease-in-out form-input sm:text-sm sm:leading-5" %>
+              </div>
+
+              <div class="col-span-6 sm:col-span-4">
+                <%= form.label :description, class:"block text-sm font-medium leading-5 text-gray-700" %>
+                <%= form.text_area :description, class:"block w-full mt-1 transition duration-150 ease-in-out form-input sm:text-sm sm:leading-5" %>
+              </div>
+
+              <div class="col-span-4">
+                <%= form.label :estimated, class:"block text-sm font-medium leading-5 text-gray-700" %>
+                <%= form.text_field :estimated, class:"block w-full mt-1 transition duration-150 ease-in-out form-input sm:text-sm sm:leading-5" %>
+              </div>
+
+              <div class="col-span-3">
+                <%= form.label :exercice, class:"block text-sm font-medium leading-5 text-gray-700"%>
+                <%= form.number_field :exercice, class:"block w-full mt-1 transition duration-150 ease-in-out form-input sm:text-sm sm:leading-5" %>
+              </div>
+
+            </div>
+          </div>
+
+          <div class="flex flex-wrap justify-end px-4 py-3 text-right bg-gray-50 sm:px-6">
+            <%= link_to 'Back', condo_budget_path(@condo), class:"flex items-center mr-4 text-sm text-gray-500" %>
+            <div class="actions">
+              <%= form.submit class:"btn btn-small btn-blue mt-2 mb-2" %>
+            </div>
+          </div>
+
+          
+        </div>
+      </form>
+    </div>
   </div>
 </div>
 <% end %>

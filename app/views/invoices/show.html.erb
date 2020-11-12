@@ -1,0 +1,34 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Date invoice:</strong>
+  <%= @invoice.date_invoice %>
+</p>
+
+<p>
+  <strong>Company:</strong>
+  <%= @invoice.company %>
+</p>
+
+<p>
+  <strong>Description:</strong>
+  <%= @invoice.description %>
+</p>
+
+<p>
+  <strong>Amount:</strong>
+  <%= @invoice.amount %>
+</p>
+
+<p>
+  <strong>Paid:</strong>
+  <%= @invoice.paid %>
+</p>
+
+<p>
+  <strong>Expense:</strong>
+  <%= @invoice.expense_id %>
+</p>
+
+<%= link_to 'Edit', edit_invoice_path(@invoice) %> |
+<%= link_to 'Back', condos_path %>

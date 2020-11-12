@@ -12,7 +12,7 @@
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
-  <body class= "relative bg-gray-200">
+  <body class= "relative bg-gray-50">
 
     <% unless notice.nil? %>
       <p class="flex items-center justify-center h-10 pl-4 font-sans text-sm text-white bg-green-400 notice"><%= notice %></p>
@@ -22,7 +22,7 @@
     <% end %>
     
 
-    <nav class="flex flex-wrap items-center py-2 bg-white border-b border-gray-400 ">
+    <nav class="flex flex-wrap items-center py-2 bg-white border-b border-gray-200 shadow-sm ">
       
       <% if user_signed_in? %>
       <%= link_to condos_path do %>

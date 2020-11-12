@@ -1,7 +1,7 @@
 class ExpensesController < ApplicationController
   
   before_action :authenticate_user!
-  before_action :set_condo
+  before_action :set_condo#, except: :condo_budget
   before_action :set_expense, only: [:show, :edit, :update, :destroy]
 
   # GET /expenses
@@ -11,7 +11,12 @@ class ExpensesController < ApplicationController
   end
 
   def condo_budget
-    
+    @expenses = Expense.of_this_year.where(condo: @condo)
+    @invoices = Invoice.where('extract(year  from date_invoice) = ?', Time.zone.now.year).where(expense: @expenses)
+  end
+
+  def condo_estim_budget
+    @expenses = Expense.of_next_year.where(condo: @condo)
   end
 
   # GET /expenses/1
@@ -22,6 +27,7 @@ class ExpensesController < ApplicationController
   # GET /expenses/new
   def new
     @expense = @condo.expenses.build
+    @expense.exercice = Time.zone.now.year
   end
 
   # GET /expenses/1/edit

@@ -1,14 +1,22 @@
+
+
 <div class="flex flex-wrap items-center h-12 pl-4 bg-blue-500 border-b">
   <p class="text-lg font-semibold text-white">Budget of <%= @condo.name %>
   </p>
 </div>
 
 <% content_for :primary_content do %>
-  <%= render "budget", { condo: @condo, test: Time.zone.now.year } %>
+<div class="mb-4 ml-4 font-semibold text-blue-800">Expenses <%= Time.zone.now.year %>
+</div>
+  <%= render "budget", { condo: @condo, expenses: @expenses, time: Time.zone.now.year, invoices: @invoices } %>
 <% end %>
 
 <% content_for :secondary_content do %>
-    <%= link_to "Return to condo", condo_path(@condo), class:"btn btn-small btn-outline"%>
+    <div class="flex flex-wrap">
+    <%= link_to "Return to condo", condo_path(@condo), class:"btn btn-small btn-outline mr-1 mb-1"%>
+    <%= link_to "Budget next year", condo_estim_budget_path(@condo), class:"btn btn-small btn-blue mr-1 mb-1"%>
+    <%= link_to "Add an invoice", new_invoice_path(expenses: @expenses, condo: @condo), class:"btn btn-small btn-blue  mb-1"%>
+</div>
 <% end %>
 
 <%= render "basic_layout" %>

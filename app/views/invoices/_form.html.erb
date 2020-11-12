@@ -1,0 +1,78 @@
+<%= form_with(model: [invoice], local: true) do |form| %>
+  <% if invoice.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(invoice.errors.count, "error") %> prohibited this invoice from being saved:</h2>
+
+      <ul>
+        <% invoice.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+
+<div class="mt-10 sm:mt-0">
+  <div class="md:grid md:grid-cols-3 md:gap-6">
+    <div class="md:col-span-1">
+      <div class="px-4 sm:px-0">
+        
+        <p class="mt-1 text-sm leading-5 text-gray-600">
+          Fill complete information about this invoice.
+        </p>
+      </div>
+    </div>
+    <div class="mt-5 md:mt-0 md:col-span-2">
+      <form action="#">
+        <div class="overflow-hidden shadow sm:rounded-md">
+          <div class="px-4 py-5 bg-white sm:p-6">
+            <div class="grid grid-cols-6 gap-6">
+              
+              <div class="col-span-6 sm:col-span-3">
+                <%= form.label :company, class:"block text-sm font-medium leading-5 text-gray-700" %>
+                <%= form.text_field :company, class:"block w-full mt-1 transition duration-150 ease-in-out form-input sm:text-sm sm:leading-5" %>
+              </div>
+
+              <div class="col-span-6 field sm:col-span-6">
+                <%= form.label :date_invoice %>
+                <%= form.date_select :date_invoice %>
+              </div>
+
+              <div class="col-span-6 sm:col-span-4">
+                <%= form.label :description, class:"block text-sm font-medium leading-5 text-gray-700" %>
+                <%= form.text_area :description, class:"block w-full mt-1 transition duration-150 ease-in-out form-input sm:text-sm sm:leading-5" %>
+              </div>
+
+              <div class="col-span-3">
+                <%= form.label :amount, class:"block text-sm font-medium leading-5 text-gray-700" %>
+                <%= form.number_field :amount, class:"block w-full mt-1 transition duration-150 ease-in-out form-input sm:text-sm sm:leading-5" %>
+              </div>
+
+              <div class="col-span-6 field">
+                <%= form.label :paid, class:" text-sm font-medium leading-5 text-gray-700" %>
+                <%= form.check_box :paid %>
+              </div>
+
+              <div class="col-span-5">
+                <%= form.label :expense_id, class:"block text-sm font-medium leading-5 text-gray-700"%>
+                <%= form.select(:expense_id, Expense.where(condo_id: params[:condo]).where(exercice: Time.zone.now.year).collect { |u| [u.nature, u.id] }, { prompt: "Choose an expense to link to" }, class:"block w-full mt-1 transition duration-150 ease-in-out form-input sm:text-sm sm:leading-5")  %>
+              </div>
+
+            </div>
+          </div>
+
+          <div class="flex flex-wrap justify-end px-4 py-3 text-right bg-gray-50 sm:px-6">
+            <%= link_to 'Back', condos_path, class:"flex items-center mr-4 text-sm text-gray-500" %>
+            <div class="actions">
+              <%= form.submit class:"btn btn-small btn-blue mt-2 mb-2" %>
+            </div>
+          </div>
+
+          
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+<% end %>

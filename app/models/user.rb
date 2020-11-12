@@ -6,5 +6,6 @@ class User < ApplicationRecord
 
   has_many :properties
   has_many :condos
+  has_many :invoices
 
 end

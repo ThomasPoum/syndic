@@ -1,8 +1,9 @@
+
 <% content_for :primary_content do %>
 
-<h1 class="w-full p-4 mb-4 font-medium leading-5 text-gray-700 rounded shadow ">Editing Property</h1>
+<h1 class="w-full p-4 mb-4 font-medium leading-5 text-gray-700 rounded shadow ">Editing Invoice</h1>
 
-  <%= render 'form', property: @property %>
+  <%= render 'form', { invoice: @invoice, expense: @expense, condo: @condo } %>
 
 <% end %>
 

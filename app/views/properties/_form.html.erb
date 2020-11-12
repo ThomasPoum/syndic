@@ -11,28 +11,71 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= form.label :address %>
-    <%= form.text_field :address %>
-  </div>
 
-  <div class="field">
-    <%= form.label :floor %>
-    <%= form.text_field :floor %>
-  </div>
 
-  <div class="field">
-    <%= form.label :surface %>
-    <%= form.number_field :surface %>
-  </div>
+<div class="mt-10 sm:mt-0">
+  <div class="md:grid md:grid-cols-3 md:gap-6">
+    <div class="md:col-span-1">
+      <div class="px-4 sm:px-0">
+        
+        <p class="mt-1 text-sm leading-5 text-gray-600">
+          Fill complete information about this property.
+        </p>
+      </div>
+    </div>
+    <div class="mt-5 md:mt-0 md:col-span-2">
+      <form action="#">
+        <div class="overflow-hidden shadow sm:rounded-md">
+          <div class="px-4 py-5 bg-white sm:p-6">
+            <div class="grid grid-cols-6 gap-6">
+              
+              <div class="col-span-6 sm:col-span-3">
+                <%= form.label :address, class:"block text-sm font-medium leading-5 text-gray-700" %>
+                <%= form.text_field :address, class:"block w-full mt-1 transition duration-150 ease-in-out form-input sm:text-sm sm:leading-5" %>
+              </div>
 
-  <div class="select">
-    <%= form.label :condo_id %>
-    <%= form.select(:condo_id, Condo.all.collect { |u| [u.name, u.id] }, { prompt: "Choose a condo" }) %>
-  </div>
-  
+              <div class="col-span-6 sm:col-span-3">
+                <%= form.label :floor, class:"block text-sm font-medium leading-5 text-gray-700" %>
+                <%= form.text_field :floor, class:"block w-full mt-1 transition duration-150 ease-in-out form-input sm:text-sm sm:leading-5" %>
+              </div>
 
-  <div class="actions">
-    <%= form.submit class:"btn btn-small btn-blue" %>
+              <div class="col-span-6 sm:col-span-4">
+                <%= form.label :description, class:"block text-sm font-medium leading-5 text-gray-700" %>
+                <%= form.text_area :description, class:"block w-full mt-1 transition duration-150 ease-in-out form-input sm:text-sm sm:leading-5" %>
+              </div>
+
+              <div class="col-span-3">
+                <%= form.label :surface, class:"block text-sm font-medium leading-5 text-gray-700" %>
+                <%= form.number_field :surface, class:"block w-full mt-1 transition duration-150 ease-in-out form-input sm:text-sm sm:leading-5" %>
+              </div>
+
+              <div class="col-span-2">
+                
+                <%= form.label :repart, class:" text-sm font-medium leading-5 text-gray-700" %> <span class="text-sm font-medium leading-5 text-gray-700"> / 1000</span>
+                <%= form.number_field :repart, class:"block w-full mt-1 transition duration-150 ease-in-out form-input sm:text-sm sm:leading-5" %>
+              </div>
+
+              <div class="col-span-5">
+                <%= form.label :condo_id, class:"block text-sm font-medium leading-5 text-gray-700"%>
+                <%= form.select(:condo_id, Condo.all.collect { |u| [u.name, u.id] }, { prompt: "Choose a condo" }, class:"block w-full mt-1 transition duration-150 ease-in-out form-input sm:text-sm sm:leading-5")  %>
+              </div>
+
+            </div>
+          </div>
+
+          <div class="flex flex-wrap justify-end px-4 py-3 text-right bg-gray-50 sm:px-6">
+            <%= link_to 'Back', condo_path(@condo), class:"flex items-center mr-4 text-sm text-gray-500" %>
+            <div class="actions">
+              <%= form.submit class:"btn btn-small btn-blue mt-2 mb-2" %>
+            </div>
+          </div>
+
+          
+        </div>
+      </form>
+    </div>
   </div>
+</div>
+
 <% end %>
+

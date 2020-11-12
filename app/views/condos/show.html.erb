@@ -67,9 +67,7 @@
 
     <% else %>
     <div class="flex flex-wrap justify-start flex-1 mt-4">
-      <% @condo.expenses.each do |e| %>
-        <%= render "expenses/expense_sidebar", expense: e %>
-      <% end %>
+      Total expenditures of the year <%= @expenses.sum(:estimated) %> €
        </div>
     <% end %>
     
