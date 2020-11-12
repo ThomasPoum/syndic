@@ -1,7 +1,0 @@
-{
-  "scripts": {
-    "dokku": {
-      "postdeploy": "bundle exec rails db:drop db:create db:migrate db:seed"
-    }
-  }
-}
