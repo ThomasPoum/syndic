@@ -81,6 +81,6 @@ test:
 production:
   <<: *default
   url: <%= ENV['DATABASE_URL'] %>
-  database: syndic_production
-  username: syndic
-  password: <%= ENV['SYNDIC_DATABASE_PASSWORD'] %>
+#  database: syndic_production
+#  username: syndic
+#  password: <%= ENV['SYNDIC_DATABASE_PASSWORD'] %>
