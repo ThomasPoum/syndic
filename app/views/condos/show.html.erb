@@ -35,7 +35,7 @@
 
   <% else %>
 
-  <%= render @condo.properties %>
+  <%= render @condo.properties, expenses: @condo.expenses %>
 
   <% if author_of(@condo) %>
   <div class="flex justify-end mt-4">
@@ -46,6 +46,17 @@
 <% end %>
 
 <% content_for :secondary_content do %>
+
+  <div class="flex flex-col">
+    <div class="flex"><p>Prochaine AG le xxxx</p></div>
+    <div class="flex justify-end mt-4">
+      <%= link_to "Voir le détail de l'AG", "#", class:"btn btn-small btn-blue"%>
+    </div>
+  </div>
+
+  <% end %>
+
+<% content_for :tercery_content do %>
   
   <% if @condo.expenses.empty? %>
 
@@ -59,12 +70,14 @@
 
   <% else %>
 
-    <div class="flex flex-wrap justify-center flex-1 mt-2 mb-4 font-medium leading-5 text-gray-700">
+    <div class="flex flex-wrap justify-center flex-1 mt-2 mb-4 font-medium leading-5 text-center text-gray-700">
     Total spent this year <%= @invoices.sum(:amount) %> € on <%= @expenses.sum(:estimated) %> € estimated
     </div>
 
-    <div class="flex justify-center mt-4 ">
-      <%= link_to 'See detailled budget', condo_budget_path(@condo), class:"btn btn-blue btn-small" %>
+    <canvas id="myChart" width="200" height="200" data-est="<%= @expenses.sum(:estimated) %>" data-real="<%= @invoices.sum(:amount) %>"></canvas>
+
+    <div class="flex justify-end mt-4 ">
+      <%= link_to 'Manage budget', condo_budget_path(@condo), class:"btn btn-blue btn-small" %>
     </div>
 
   <% end %>

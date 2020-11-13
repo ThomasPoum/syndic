@@ -40,15 +40,23 @@
           Owner:
         </dt>
         <dd class="mt-1 text-sm leading-5 text-gray-900 sm:mt-0 sm:col-span-2">
-         <%= @property.user.fullname %>
+          <%= @property.user.fullname %>
         </dd>
       </div>
       <div class="px-4 py-5 bg-gray-50 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
         <dt class="text-sm font-medium leading-5 text-gray-500">
+          Key repart
+        </dt>
+        <dd class="mt-1 text-sm leading-5 text-gray-900 sm:mt-0 sm:col-span-2">
+          <%= @property.repart %> / 1000
+        </dd>
+      </div>
+        <div class="px-4 py-5 bg-white sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+        <dt class="text-sm font-medium leading-5 text-gray-500">
           Description & added info
         </dt>
         <dd class="mt-1 text-sm leading-5 text-gray-900 sm:mt-0 sm:col-span-2">
-          <%#= @property.description %>
+         <%#= @property.description %>
         </dd>
       </div>
       <div class="flex justify-end px-4 py-5 bg-white">
@@ -63,7 +71,13 @@
 <% end %>
 
 <% content_for :secondary_content do %>
-  <h1 class="text-lg text-gray-600">Your property !</h1>
+
+  <h1 class="text-lg text-gray-600">Annual charges</h1>
+  <div class="mt-4 font-medium leading-5 text-gray-500 ext-sm">
+    <p>This year estimated charges for this property were <%= @condo.expenses.sum(:estimated)*@property.repart / 1000 %> €</p>
+    <p class="mt-2">So far this year regulation is <%= (Invoice.where(:expense_id => @condo.expense_ids).sum(:amount)*@property.repart / 1000) - (@condo.expenses.sum(:estimated)*@property.repart / 1000) %> €</p>
+  </div>
+
 <% end %>
 
 

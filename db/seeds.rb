@@ -21,7 +21,6 @@ condo = Condo.create(
     address: "6 rue colbert", 
     floor: "4 gauche", 
     surface: 78,
-    condo_id: condo.id, 
     user_id: user.id, 
     repart: 145
   },
@@ -29,7 +28,6 @@ condo = Condo.create(
     address: "6 rue colbert", 
     floor: "4 droite", 
     surface: 100, 
-    condo_id: condo.id,
     user_id: user.id, 
     repart: 140
   }, 
@@ -37,7 +35,6 @@ condo = Condo.create(
     address: "6 rue colbert", 
     floor: "1 droite", 
     surface: 100, 
-    condo_id: condo.id,
     user_id: user.id, 
     repart: 120
   },
@@ -45,7 +42,6 @@ condo = Condo.create(
     address: "6 rue colbert", 
     floor: "3 droite", 
     surface: 100, 
-    condo_id: condo.id,
     user_id: user.id, 
     repart: 130
   },
@@ -53,7 +49,6 @@ condo = Condo.create(
     address: "6 rue colbert", 
     floor: "RDC", 
     surface: 35, 
-    condo_id: condo.id,
     user_id: user.id, 
     repart: 55
   }
@@ -194,7 +189,7 @@ invoices = Invoices.create(
       description: "More lockdowns, more use, more breaks. Even if it ...", 
       amount: 1200.0, 
       paid: true, 
-      expense_id: communities.[4], 
+      expense_id: communities[4], 
       user_id: user.id
     } 
   ]
