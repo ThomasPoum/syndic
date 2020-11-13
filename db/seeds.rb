@@ -7,7 +7,7 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 
 
-user = User.create!(
+user = User.create(
   {
     email: "tom@dev.com",
     password: "devdev",
@@ -16,7 +16,7 @@ user = User.create!(
   }
 )
 
-condo : Condo.create!(
+condo = Condo.create(
   {
     address: "6 rue colbert", 
     floor: "4 gauche", 
@@ -59,7 +59,7 @@ condo : Condo.create!(
   }
 )
 
-properties : Property.create(
+properties = Property.create(
   {
     name: "6 rue Colbert - 29200 BREST",
     user_id: user.id
