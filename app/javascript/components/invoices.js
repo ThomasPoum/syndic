@@ -7,6 +7,7 @@ document.addEventListener('turbolinks:load', () => {
       dropdown.addEventListener("click", (e) => {
         const dropdownTarget = dropdown.nextElementSibling;
         dropdownTarget.classList.toggle("hidden");
+        e.preventDefault;
       })
     });
   }

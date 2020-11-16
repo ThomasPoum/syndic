@@ -1,6 +1,7 @@
 document.addEventListener('turbolinks:load', () => {
-    
+
     var ctx = document.getElementById('myChart');
+    if (ctx) {
     var myChart = new Chart(ctx, {
         type: 'bar',
         data: {
@@ -25,6 +26,5 @@ document.addEventListener('turbolinks:load', () => {
         }
     });
 
-
-
+}
 });
